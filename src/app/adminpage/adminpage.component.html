@@ -1,0 +1,91 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"  [routerLink]="['/']">MIB</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav">
+                  <li *ngIf="isAuth == 'yes'"><a [routerLink]="[ '/', 'adminpage']"> Admin Page</a> </li>
+                  <li *ngIf="isAuth == 'yes'"><a (click)="addCar(car)" [routerLink]="[ '/', 'adminpage/add-edit-car']"> Dodaj Kola </a> </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['/','/']" > Odjava </a> </li>
+                </ul>
+
+            </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h2>Rent-a-Car MIB</h2>
+  <input type="button" id="allAutomobili" class="btn btn-primary" [routerLink]="[ '/', 'adminpage']" value="Automobili">
+    <input type="button" (click)="addCar(car)" id="dodajAutomobilBtn" class="btn btn-info" value="Dodaj Automobil">
+
+</div>
+
+<div class="row" id="mainRow">
+      <div class="col-xs-10 col-xs-offset-1">
+        <h2 class="page-header">Automobili</h2>
+           <div class="row">
+               <div class="col-xs-10 col-xs-offset-1">
+                    <table class="table">
+                       <thead>
+                         <tr>
+                           <th>id</th>
+                           <th>model</th>
+                           <th>godina proiz.</th>
+                           <th>datum kup.</th>
+                           <th>kilometraza</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr  *ngFor="let car of cars" >
+                           <td>{{car.MARKA_AUTOMOBILA}}</td>
+                            <td>{{car.MODEL_AUTOMOBILA}}</td>
+                            <td>{{car.GODINA_PROIZVODNJE}}</td>
+                            <td>{{car.DATUM_KUPOVINE}}</td>
+                            <td>{{car.KILOMETRAZA}}</td>
+                         <td ><input (click)="izmeni(car)" type="button" class="btn-xs btn-primary" value="Izmeni"></td>
+                         <td ><input (click)="obrisi(car)" type="button" class="btn-xs btn-danger" value="Obrisi"></td>
+
+                       </tr>
+                       </tbody>
+
+                    </table>
+               </div>
+           </div>
+      </div>
+    </div>
+
+
+    <div class="row" id="formRow">
+      <div class="col-xs-10 col-xs-offset-1">
+        <h2 class="page-header">Automobili</h2>
+           <div class="row">
+               <div class="col-xs-10 col-xs-offset-1">
+                  <form  action="#" >
+                  <input id="id_i" type="text" placeholder="Id"class=" form-control"><br>
+                  <input id="ime_i" type="text" placeholder="ime"class=" form-control"><br>
+                  <input id="model_i" type="text" placeholder="model"class=" form-control"><br>
+                  <input id="info_i" type="text" placeholder="info"class=" form-control"><br>
+                  <input id="slika_i" type="text" placeholder="slika"class=" form-control"><br>
+                  <input id="sub_i" type="button" class="btn btn-primary form-control" value="Dodaj Automobil">
+                  <input id="promeni_i" type="button" class="btn btn-success form-control" value="Promeni podatke automobila">
+
+                  </form>
+               </div>
+           </div>
+      </div>
+    </div>
+<script src="../../assets/js/main.js"></script>
+
+<div>
+<router-outlet></router-outlet>
+</div>

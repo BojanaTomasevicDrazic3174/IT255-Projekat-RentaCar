@@ -1,0 +1,26 @@
+<?php
+
+   header('Access-Control-Allow-Methods: GET');
+   include("functions.php");
+
+   $method2  = file_get_contents('php://input');
+   $data = json_decode($method2);
+
+   $ID_REZERVACIJA =$data -> ID_REZERVACIJA;
+   $ID_AUTOMOBIL =$data -> ID_AUTOMOBIL;
+   $ID_KLIJENTA =$data -> ID_KLIJENTA;
+   $ID_TRAJANJA =$data -> ID_TRAJANJA ;
+   $DATUM_REZARVACIJE =$data -> DATUM_REZARVACIJE;
+   $DATUM_POCETKA =$data -> DATUM_POCETKA;
+   $DATUM_ZAVRSETKA =$data -> DATUM_ZAVRSETKA;
+   $VALIDNA_REZERVACIJA =$data -> VALIDNA_REZERVACIJA;
+   $NACIN_REZERVISANJA =$data -> NACIN_REZERVISANJA;
+   $PREDJENA_KILOMETRAZA =$data -> PREDJENA_KILOMETRAZA;
+   $CENA =$data -> CENA;
+   $STATUS  =$data -> STATUS;
+
+   echo updateRezervacija($ID_REZERVACIJA,$ID_AUTOMOBIL,$ID_KLIJENTA,$ID_TRAJANJA,$DATUM_REZARVACIJE,
+   $DATUM_POCETKA,$DATUM_ZAVRSETKA,$VALIDNA_REZERVACIJA,$NACIN_REZERVISANJA,$PREDJENA_KILOMETRAZA,$CENA,$STATUS);
+
+
+  ?>

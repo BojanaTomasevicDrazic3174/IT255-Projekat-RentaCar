@@ -1,0 +1,120 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"  [routerLink]="['/']">MIB</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav">
+                    <li><a [routerLink]="['/']"> Pocetna  </a> </li>
+
+                    <li><a [routerLink]="['galerija']"> Galerija </a> </li>
+                    <li><a [routerLink]="['kontakt']"> Kontakt  </a> </li>
+
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a [routerLink]="['prijava']"> Prijava </a> </li>
+                  <li><a [routerLink]="['registracija']"> Registracija </a> </li>  
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="isAuth == 'no'"><a [routerLink]="['prijava']"> Prijava </a> </li>
+                    <li *ngIf="isAuth == 'no'"><a [routerLink]="['registracija']"> Registracija </a> </li>
+                    <li *ngIf="isAuth == 'yes'"><a href="admin.php"> Pocetna-Admin</a> </li>
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['adminpage']"> Admin Page</a> </li>
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['dodajKola']"> Dodaj Kola </a> </li>
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['nalozi']"> Nalozi Korisnika </a> </li>
+                    <li *ngIf="isAuth == 'yes'"><a > Odjava </a> </li>
+                </ul>
+
+            </div>
+    </div>
+</nav>
+<br> <br>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <div class="row">
+          <div style="height: 350px;" class="col-lg-6" *ngFor="let car of cars">
+            <div  class="panel panel-default">
+              <div class="panel-heading">
+                 <h3> ID: {{ car.ID_AUTOMOBIL }}, {{ car.MARKA_AUTOMOBILA }} {{ car.MODEL_AUTOMOBILA }}</h3>
+               </div>
+                <div class="panel-body">
+                  <div class="col-lg-6">
+                     <img [src]="car.URL_SLIKE" class="img-responsive img-thumbnail" alt="">
+                  </div>
+                  <div class="col-lg-6">
+                    <p>Kilometraza: {{ car.KILOMETRAZA }} km </p>
+
+                  </div>
+                </div>
+                <div class="panel-footer text-right">
+                      <button type="button" name="button" class="btn btn-warning" (click)="display(car)" data-toggle="modal" data-target="#myModal">Procitaj vise</button>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <!-- Trigger the modal with a button -->
+
+
+              <!-- Modal -->
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title"><h3> ID: {{ activeCar.ID_AUTOMOBIL }}, {{ activeCar.MARKA_AUTOMOBILA }} {{ activeCar.MODEL_AUTOMOBILA }}</h3></h4>
+                      <div class="row">
+                        <div class="col-lg-4">
+                           <img [src]="activeCar.URL_SLIKE" class="img-responsive" alt="">
+                        </div>
+                        <div class="col-lg-4">
+                           <img [src]="activeCar.KILOMETRAZA" class="img-responsive" alt="">
+                        </div>
+                        <div class="col-lg-4">
+                           <img [src]="activeCar.KILOMETRAZA" class="img-responsive" alt="">
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="modal-body">
+                      <p> Id tarifna klasa: {{  activeCar.ID_TARIFNA_KLASA }}</p>
+                      <p> Id osiguranja: {{  activeCar.ID_OSIGURANJE }}</p>
+                      <p> Datum kupovine: {{  activeCar.DATUM_KUPOVINE }}</p>
+                      <p> Kilometraza: {{  activeCar.KILOMETRAZA }}</p>
+                      <p> Godina proizvodnje: {{  activeCar.GODINA_PROIZVODNJE }}</p>
+                      <p> Snaga automobila: {{  activeCar.SNAGA_AUTOMOBILA }}</p>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+        </div>
+
+      </div>
+
+    </div>

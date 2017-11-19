@@ -1,0 +1,19 @@
+.navbar.navbar-inverse{
+  color: azure;
+  margin : 0;
+
+}
+table{
+  margin: 0;
+}
+.table>tbody>tr>td>img{
+
+  width: 220px;
+  height: 185px;
+}
+#formRow{
+  display: none;
+}
+#promeni_i{
+  display: none;
+}

@@ -1,0 +1,67 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"  [routerLink]="['home']">MIB</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav">
+                  <li *ngIf="isAuth == 'yes'"><a [routerLink]="['racunovodja']"> Nalozi Korisnika </a> </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['/','/']"> Odjava </a> </li>
+                </ul>
+
+            </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h2>Rent-a-Car MIB</h2>
+  <input type="button" id="allAutomobili" class="btn btn-primary" value="Nalozi">
+
+</div>
+
+
+<div class="row" id="mainRow">
+      <div class="col-xs-10 col-xs-offset-1">
+        <h2 class="page-header">Vase rezervacije</h2>
+           <div class="row">
+               <div class="col-xs-10 col-xs-offset-1">
+                    <table class="table">
+                       <thead>
+                         <tr>
+
+                           <th>ID_AUTOMOBIL</th>
+                           <th>ID_TRAJANJA</th>
+                           <th>DATUM_REZARVACIJE</th>
+                           <th>PREDJENA_KILOMETRAZA</th>
+                           <th>CENA</th>
+                           <th>STATUS</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr  *ngFor="let rez of rezervacije" >
+                           <td>{{rez.ID_AUTOMOBIL}}</td>
+                            <td>{{rez.ID_TRAJANJA}}</td>
+                            <td>{{rez.DATUM_REZARVACIJE}}</td>
+                            <td>{{rez.PREDJENA_KILOMETRAZA}}</td>
+                            <td>{{rez.CENA}}</td>
+                            <td>{{rez.STATUS}}</td>
+                         <td ><input (click)="izmeni(rez)" type="button" class="btn-xs btn-primary" value="Izmeni"></td>
+                         <td ><input (click)="obrisi(rez)" type="button" class="btn-xs btn-danger" value="Obrisi"></td>
+
+                       </tr>
+                       </tbody>
+
+                    </table>
+               </div>
+           </div>
+      </div>
+    </div>

@@ -1,0 +1,84 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"  [routerLink]="['/']">MIB</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav">
+                  <li *ngIf="isAuth == 'yes'"><a [routerLink]="[ '/', 'adminpage']"> Admin Page</a> </li>
+                  <li *ngIf="isAuth == 'yes'"><a  (click)="addCar(car)" [routerLink]="[ '/', 'adminpage/add-edit-car']"> Dodaj Kola </a> </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['/','/']" > Odjava </a> </li>
+                </ul>
+
+            </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h2>Rent-a-Car MIB</h2>
+  <input type="button" id="allAutomobili" class="btn btn-primary" [routerLink]="[ '/', 'adminpage']" value="Automobili">
+    <input type="button" id="dodajAutomobilBtn" class="btn btn-info" (click)="addCar(car)" value="Dodaj Automobil">
+
+</div>
+
+
+<div class="container">
+    <h1 *ngIf="car===undefined">Dodaj auto</h1> <h1 *ngIf="car!==undefined">Izmeni auto</h1>
+    <form class="col-lg-5" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+      <div class="form-group" [hidden]="true">
+        <label for=""></label>
+        <input type="number" class="form-control" formControlName="ID_AUTOMOBIL">
+      </div>
+      <div class="form-group">
+        <label for="">ID tarifne klase*</label>
+        <input type="number" class="form-control" formControlName="ID_TARIFNA_KLASA" required>
+      </div>
+      <div class="form-group">
+        <label for="">Id osiguranja</label>
+        <input type="number" class="form-control" formControlName="ID_OSIGURANJE" required>
+      </div>
+      <div class="form-group">
+        <label for="">Marka automobila*</label>
+        <input type="text" class="form-control" formControlName="MARKA_AUTOMOBILA" required>
+      </div>
+      <div class="form-group">
+        <label for="">Model automobila*</label>
+        <input type="text" class="form-control" formControlName="MODEL_AUTOMOBILA" required>
+      </div>
+      <div class="form-group">
+        <label for="">Datum kupovine*</label>
+        <input type="text" class="form-control" formControlName="DATUM_KUPOVINE" required>
+      </div>
+      <div class="form-group">
+        <label for="">Cena automobila</label>
+        <input type="number" class="form-control" formControlName="CENA_AUTOMOBILA" >
+      </div>
+      <div class="form-group">
+        <label for="">Kilometraza</label>
+        <input type="number" class="form-control" formControlName="KILOMETRAZA" >
+      </div>
+      <div class="form-group">
+        <label for="">Godina proizvodnje*</label>
+        <input type="text" class="form-control" formControlName="GODINA_PROIZVODNJE" required>
+      </div>
+      <div class="form-group">
+        <label for="">Snaga automobila</label>
+        <input type="number" class="form-control" formControlName="SNAGA_AUTOMOBILA" >
+      </div>
+      <div class="form-group">
+        <label for="">Url slike</label>
+        <input type="text" class="form-control" formControlName="URL_SLIKE" >
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+<?php
+
+   header('Access-Control-Allow-Methods: GET');
+   include("functions.php");
+
+   $method2  = file_get_contents('php://input');
+   $data = json_decode($method2);
+
+   $ID_AUTOMOBIL =$data -> ID_AUTOMOBIL;
+   $ID_TARIFNA_KLASA =$data -> ID_TARIFNA_KLASA;
+   $ID_OSIGURANJE =$data -> ID_OSIGURANJE;
+   $MARKA_AUTOMOBILA =$data -> MARKA_AUTOMOBILA ;
+   $MODEL_AUTOMOBILA =$data -> MODEL_AUTOMOBILA;
+   $DATUM_KUPOVINE =$data -> DATUM_KUPOVINE;
+   $CENA_AUTOMOBILA =$data -> CENA_AUTOMOBILA;
+   $KILOMETRAZA =$data -> KILOMETRAZA;
+   $GODINA_PROIZVODNJE =$data -> GODINA_PROIZVODNJE;
+   $SNAGA_AUTOMOBILA =$data -> SNAGA_AUTOMOBILA;
+   $URL_SLIKE =$data -> URL_SLIKE;
+
+   echo updateCar($ID_AUTOMOBIL,$ID_TARIFNA_KLASA,$ID_OSIGURANJE,$MARKA_AUTOMOBILA,$MODEL_AUTOMOBILA,$DATUM_KUPOVINE,$CENA_AUTOMOBILA,$KILOMETRAZA,$GODINA_PROIZVODNJE,$SNAGA_AUTOMOBILA,$URL_SLIKE);
+
+
+  ?>

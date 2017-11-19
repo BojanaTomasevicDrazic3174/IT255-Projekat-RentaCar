@@ -1,0 +1,88 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"  [routerLink]="['/']">MIB</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav">
+                  <li *ngIf="isAuth == 'yes'"><a [routerLink]="['/', 'korisnik']"> Napravi rezervaciju</a> </li>
+                  <li *ngIf="isAuth == 'yes'"><a [routerLink]="['/', 'korisnik']">Rezervacije </a> </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="isAuth == 'yes'"><a [routerLink]="['/','/']"> Odjava </a> </li>
+                </ul>
+
+            </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h2>Rent-a-rez MIB</h2>
+  <input type="button" id="allAutomobili" [routerLink]="['/', 'korisnik']" class="btn btn-primary" value="Napravi Rezervaciju">
+      <input type="button" id="editBtn" class="btn btn-warning" [routerLink]="['/', 'korisnik']" value="Rezervacije">
+
+</div>
+
+
+<div class="container">
+    <h1 *ngIf="rez===undefined">Dodaj Rezervaciju</h1> <h1 *ngIf="rez!==undefined">Izmeni rezervaciju</h1>
+    <form class="col-lg-5" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+      <div class="form-group" [hidden]="true">
+        <label for=""></label>
+        <input type="number" class="form-control" formControlName="ID_REZERVACIJA">
+      </div>
+      <div class="form-group">
+        <label for="">ID automobila*</label>
+        <input type="number" class="form-control" formControlName="ID_AUTOMOBIL" (ngModelChange)="carchange($event)" required>
+      </div>
+      <div class="form-group" [hidden]="true">
+        <label for=""></label>
+        <input type="number" class="form-control" formControlName="ID_KLIJENTA">
+      </div>
+      <div class="form-group">
+        <label for="">Id trajanja rezervacije*</label>
+        <input type="text" class="form-control" formControlName="ID_TRAJANJA" (ngModelChange)="timechange($event)" required>
+      </div>
+      <div class="form-group" [hidden]="true">
+        <label for=""></label>
+        <input type="text" class="form-control" formControlName="DATUM_REZARVACIJE">
+      </div>
+      <div class="form-group">
+        <label for="">Datum pocetka rezervacije*</label>
+        <input type="text" class="form-control" formControlName="DATUM_POCETKA" required>
+      </div>
+      <div class="form-group">
+        <label for="">Datum zavrsetka</label>
+        <input type="text" class="form-control" formControlName="DATUM_ZAVRSETKA" >
+      </div>
+      <div class="form-group">
+        <label for="">Validna rezervacija</label>
+        <input type="number" class="form-control" formControlName="VALIDNA_REZERVACIJA" >
+      </div>
+      <div class="form-group">
+        <label for="">Nacin rezervisanja</label>
+        <input type="text" class="form-control" formControlName="NACIN_REZERVISANJA">
+      </div>
+      <div class="form-group">
+        <label for="">Predjena kilometraza</label>
+        <input type="number" class="form-control" formControlName="PREDJENA_KILOMETRAZA" >
+      </div>
+      <div class="form-group">
+        <label for="">Cena</label>
+        <input  type="text" [(ngModel)]='cena' class="form-control" formControlName="CENA" >
+      </div>
+      <div class="form-group">
+        <label for="">Status*</label>
+        <input type="text" class="form-control" formControlName="STATUS" required>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

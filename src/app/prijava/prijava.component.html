@@ -1,0 +1,21 @@
+<div class="row">
+
+  <h1 class="form page-header col-lg-3 col-lg-offset-4" >Prijava na sajt</h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <form class="form">
+      <br><br>
+
+        <label class="form ">Username* : </label>
+        <input class="form form-control" type="text" name="USERNAME" #u>
+        <label class="form ">Password* : </label>
+        <input class="form form-control" type="password" name="PASSWORD" #p>
+        <br><br>
+        <input type="button" (click)="prijava(u,p)" class="form form-control btn btn-warning" name="submit" value="Uloguj se">
+
+
+    </form>
+</div>
+</div>
